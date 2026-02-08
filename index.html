@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio - Convite do Jefferson</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f2f5; 
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Container Principal Responsivo */
+        .bio-container {
+            width: 100%;
+            max-width: 450px; /* Largura máxima para Desktop */
+            min-height: 100vh;
+            background-color: #003366; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Ajustes para Desktop (Telas maiores que 600px) */
+        @media (min-width: 600px) {
+            .bio-container {
+                min-height: 90vh;
+                height: auto;
+                margin: 20px auto;
+                border-radius: 30px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            }
+        }
+
+        /* BANNER DE FUNDO */
+        .header-banner {
+            width: 100%;
+            height: 180px; /* Reduzi um pouco para telas menores */
+            background-image: linear-gradient(rgba(0, 51, 102, 0.4), rgba(0, 51, 102, 1)), url('https://i.pinimg.com/736x/56/e3/b2/56e3b213860fc5e637917bdeb1e80456.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* FOTO DE PERFIL */
+        .profile-pic {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #ffae00;
+            object-fit: cover;
+            position: absolute;
+            bottom: -55px;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* CONTEÚDO */
+        .content {
+            padding: 70px 20px 30px 20px;
+            text-align: center;
+            flex-grow: 1; /* Garante que o conteúdo empurre o rodapé */
+        }
+
+        h1 {
+            color: #ffae00;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 5vw, 1.6rem); /* Tamanho de fonte fluido */
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        /* BOTÕES RESPONSIVOS */
+        .link-button {
+            display: flex;
+            align-items: center;
+            background-color: #ff6600;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            width: 100%; /* Ocupa a largura disponível */
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            background-color: #ffae00;
+            color: #003366;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+        }
+
+        .link-button i {
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: left;
+        }
+
+        .btn-text {
+            flex-grow: 1;
+            text-align: center;
+            line-height: 1.2;
+            font-size: 0.95rem;
+        }
+
+        .btn-text small {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #003366;
+            opacity: 0.8;
+        }
+
+        /* RODAPÉ */
+        .footer {
+            padding: 20px;
+            color: #ffae00;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bio-container">
+        <div class="header-banner">
+            <img src="https://i.pinimg.com/736x/56/e3/b2/56e3b213860fc5e637917bdeb1e80456.jpg" alt="Jefferson" class="profile-pic">
+        </div>
+
+        <div class="content">
+            <h1>Convite do Jefferson</h1>
+
+            <a href="https://wa.me/5521982576471?text=Olha%2C%20gostaria%20de%20informações" class="link-button">
+                <i class="fa-brands fa-whatsapp"></i>
+                <div class="btn-text">WhatsApp</div>
+            </a>
+
+            <a href="https://sites.google.com/view/convitedojefferson/convite-do-jefferson" class="link-button">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <div class="btn-text">Loja Virtual<small>convitedojefferson.com</small></div>
+            </a>
+
+            <a href="https://www.instagram.com/convitedojefferson" class="link-button">
+                <i class="fa-brands fa-instagram"></i>
+                <div class="btn-text">Instagram</div>
+            </a>
+
+            <a href="https://www.kwai.com/@jeffersonartes" class="link-button">
+                <i class="fa-solid fa-play"></i>
+                <div class="btn-text">Kwai</div>
+            </a>
+        </div>
+
+        <div class="footer">DESIGN BY JEFFERSON</div>
+    </div>
+
+</body>
+</html>
