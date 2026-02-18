@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Link - Convite do Jefferson</title>
+    <style>
+        :root {
+            --diamond-blue: #00f2ff;
+            --neon-blue: #00d2ff;
+            --led-glow: rgba(0, 242, 255, 0.5);
+            --deep-space: #00050a;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- FUNDO DINÂMICO --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+        }
+
+        .bg-elite {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at center, #001a33 0%, #000000 100%);
+        }
+
+        .neon-cloud {
+            position: absolute;
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle, var(--led-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: cloudSync 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes cloudSync {
+            0% { transform: translate(-20%, -20%) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.2); }
+        }
+
+        .diamond-particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--diamond-blue);
+            animation: shimmer 3s infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.2; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* --- CARD PRINCIPAL --- */
+        .main-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: clamp(340px, 35vw, 500px);
+            padding: clamp(30px, 5vh, 50px);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            border-radius: 40px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .avatar-aura {
+            position: relative;
+            width: clamp(100px, 12vw, 140px);
+            height: clamp(100px, 12vw, 140px);
+            margin: 0 auto 20px;
+        }
+
+        .avatar-aura img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--diamond-blue);
+            box-shadow: 0 0 25px var(--diamond-blue);
+            animation: floatHero 4s infinite ease-in-out;
+        }
+
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--diamond-blue);
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            color: var(--diamond-blue);
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-elite {
+            padding: 16px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 1px solid var(--diamond-blue);
+            border-radius: 15px;
+            background: rgba(0, 242, 255, 0.05);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-border 3s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 242, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+        }
+
+        .btn-elite:hover {
+            background: var(--diamond-blue);
+            color: #000;
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--diamond-blue);
+        }
+
+        #bomb-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-elite" id="elite-bg">
+        <div class="neon-cloud"></div>
+    </div>
+    <canvas id="bomb-canvas"></canvas>
+
+    <div class="main-card">
+        <div class="avatar-aura">
+            <img src="https://i.pinimg.com/736x/56/e3/b2/56e3b213860fc5e637917bdeb1e80456.jpg" alt="CONVITE DO">
+        </div>
+        
+        
+        <h1><div class="tag">Jefferson</div></h1>
+
+        <nav class="btn-list">
+            <a href="https://www.instagram.com/convitedojefferson" class="btn-elite" onclick="boom(event)">INSTAGRAM</a>
+            <a href="https://wa.me/5521982576471" class="btn-elite" onclick="boom(event)">WHATSAPP</a>
+            <a href="https://www.kwai.com/@jeffersonartes" class="btn-elite" onclick="boom(event)">KWAI</a>
+            <a href="convitedojefferson.github.io/convitedojefferson" class="btn-elite" onclick="boom(event)">LOJA VIRTUAL</a>
+        </nav>
+    </div>
+
+    <script>
+        // 1. Partículas de Diamante no Fundo
+        const bg = document.getElementById('elite-bg');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'diamond-particle';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size; star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            bg.appendChild(star);
+        }
+
+        // 2. Sistema de Explosão (Bomba)
+        const bombCanvas = document.getElementById('bomb-canvas');
+        const bCtx = bombCanvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            bombCanvas.width = window.innerWidth;
+            bombCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 6 + 2;
+                this.speedX = (Math.random() - 0.5) * 15;
+                this.speedY = (Math.random() - 0.5) * 15;
+                this.alpha = 1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= 0.02;
+            }
+            draw() {
+                bCtx.save();
+                bCtx.globalAlpha = this.alpha;
+                bCtx.shadowBlur = 15;
+                bCtx.shadowColor = "#00f2ff";
+                bCtx.fillStyle = "white";
+                bCtx.beginPath();
+                bCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                bCtx.fill();
+                bCtx.restore();
+            }
+        }
+
+        function boom(e) {
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
+            for (let i = 0; i < 30; i++) particles.push(new Particle(x, y));
+            
+            const card = document.querySelector('.main-card');
+            card.style.transform = "scale(0.95)";
+            setTimeout(() => card.style.transform = "scale(1)", 100);
+        }
+
+        // 3. Brilho Suave de Fundo (Canvas)
+        const bgCanvas = document.getElementById('bg-canvas');
+        const gCtx = bgCanvas.getContext('2d');
+        let stars = [];
+
+        class Star {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.size = Math.random() * 2;
+                this.opacity = Math.random();
+                this.speed = Math.random() * 0.01 + 0.002;
+            }
+            update() {
+                this.opacity -= this.speed;
+                if (this.opacity <= 0) this.reset();
+            }
+            draw() {
+                gCtx.fillStyle = `rgba(0, 210, 255, ${this.opacity})`;
+                gCtx.beginPath();
+                gCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                gCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) stars.push(new Star());
+
+        function animate() {
+            // Limpa canvas da bomba
+            bCtx.clearRect(0, 0, bombCanvas.width, bombCanvas.height);
+            particles.forEach((p, i) => {
+                p.update(); p.draw();
+                if (p.alpha <= 0) particles.splice(i, 1);
+            });
+
+            // Limpa canvas de brilho
+            gCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            stars.forEach(s => { s.update(); s.draw(); });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
